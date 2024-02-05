@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/main.css">
+  <title>I'm Bored</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bucks : Live Foreign Exchange💲</h1>
+
+    <form action="/submit" id="form" class="form" method="POST">
+      <input type="text" name="base" placeholder="base">
+      <input type="text" name="currencies" placeholder="Currencies">
+      <button type="submit" class="form-submit">Convert</button>
+    </form>
+    <section id="cards" class="cards">
+      <% if (locals.data && locals.data.success) { %>
+        <article class="card-item">
+          <h2 class="card-activity">
+            <%= locals.data.base %>
+            <%= locals.data.rates.length %>
+
+          </h2>
+          <div class="card-info">
+            <span class="card-type">
+              <!-- Check if rates property exists before accessing -->
+              <p>Number of currencies: <%= Object.keys(locals.data.rates).length %></p>
+
+              <% if (locals.data.rates && Object.keys(locals.data.rates).length > 0) { %>
+                <ul>
+                  <% for (const [currency, rate] of Object.entries(locals.data.rates)) { %>
+                    <li><%= currency %>: <%= rate %></li>
+                  <% } %>
+                </ul>
+                <h3>Thank you</h3>
+              <% } else { %>
+                <p>No rates available.</p>
+              <% } %>
+              
+            </span>
+      
+          </div>
+        </article>
+      <% } else if (locals.error) { %>
+        <div id="tag-error" class="tag-error">
+          <%= locals.error.message %>
+        </div>
+      <% } else { %>
+        <!-- Handle other cases if needed -->
+        <div id="tag-error" class="tag-error">
+          
+        </div>
+      <% } %>
+      
+      
+    </section>
+  </div>
+
+</body>
+<footer>
+  <p>Creator: Yagnesh Pasam<br>
+      <a href="https://twitter.com/intent/tweet?text=Check%20out%20@YagneshPasam%20Rock%20Paper%20Scissors%20game%20%23RPSGame%20on%20GitHub:%20https://github.com/yagnesh2004/Rock-Paper-Scissor" target="_blank">
+          Tweet
+      </a>
+  <a href="https://github.com/yagnesh2004/Rock-Paper-Scissor.git">Github-repo</a></p>
+</footer>
+
+
+</html>
