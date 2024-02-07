@@ -1,11 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convert</title>
+<title>Bucks💲</title>
+  <style>
+    /* Add your styles for the navigation bar here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; /* Reset default margin */
+      padding: 0; /* Reset default padding */
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto; /* Center the container */
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center; /* Center-align the navbar tabs */
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #333;
+      padding: 8px 12px; /* Reduce padding */
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .card-item {
+      width: 48%; /* Adjust card width as needed */
+      margin-bottom: 20px;
+    }
+
+    .card-activity {
+      margin-bottom: 10px;
+    }
+
+    .card-info {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .tag-error {
+      color: red;
+    }
+
+    footer {
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
-    
+  <div class="container">
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <form action="/submit" id="form" class="form" method="POST">
+          <a href="/converter" method="POST" >Converter</a>
+          <a href="/exchange" method="POST">Exchanger</a>
+        </form>
+        
+      </div>
+    </div>
+    <h1>Exchange💲</h1>
+        
+    <form action="/convert_cal" id="form" class="form" method="POST">
+        <input type="text" name="from" placeholder="from">
+        <input type="text" name="to" placeholder="to">
+        <input type="text" name="amount" placeholder="amount">
+  
+        <button type="submit" class="form-submit">Calculate</button>
+    </form>
+      <section id="cards" class="cards">
+        <% if (locals.data && locals.data.success) { %>
+          <article class="card-item">
+            <h2 class="card-activity">
+              <%= locals.data.query.from %> -> <%= locals.data.query.to %>
+            </h2>
+            <div class="card-info">
+              <span class="card-type">
+                <ul>
+                    <li>
+                        <p> One  <%= locals.data.query.to %> = <%= locals.data.info.quote %></p>
+
+                    </li>
+                    <li>
+                        <p> Result = <%= locals.data.result %></p>
+
+                    </li>
+                </ul>
+              </span>
+            </div>
+          </article>
+        <% } else if (locals.error) { %>
+          <div id="tag-error" class="tag-error">
+            <%= locals.error.message %>
+          </div>
+        <% } else { %>
+          <!-- Handle other cases if needed -->
+          <div id="tag-error" class="tag-error">
+          </div>
+        <% } %>
+      </section>
+  
+  
+      <footer>
+        <p>
+          <h2>Creator: Yagnesh Pasam</h2><br>
+          <a href="https://twitter.com/intent/tweet?text=Check%20out%20@YagneshPasam%27s%20live%20e-currency%20exchange%20API,%20built%20on%20February%205,%202024.%20%23CurrencyExchange%20%23API" target="_blank">
+            Tweet
+          </a>
+          <a href="https://github.com/yagnesh2004/forexrate.git">Github-repo</a>
+        </p>
+      </footer>
+    </div>
+  
+
 </body>
+
 </html>
